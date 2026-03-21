@@ -1,0 +1,12 @@
+/* ── Google Fonts: Bebas Neue (headings) + Inter (body) ── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --black:   #111111;
+    --white:   #ffffff;
+    --red:     #e5000a;   /* Nike-red accent for CTA */
+    --gray:    #767676;
+    --light:   #f5f5f5;
+    --border:  #e5e5e5;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}

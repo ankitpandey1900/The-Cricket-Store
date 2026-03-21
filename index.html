@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khelo Ji | Premium Cricket Equipment</title>
+    <!-- Modular CSS entry point -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header-->
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s"
+                class="logo" alt="Khelo Ji Logo">
+            <h1>Khelo Ji</h1>
+        </div>
+
+        <nav class="nav" aria-label="Main Navigation">
+            <a href="#">Home</a>
+            <a href="#products-section">Products</a>
+            <a href="#footer">Contact</a>
+            <input type="text" id="search-bar" autocomplete="off" placeholder="Search a product...">
+            <a href="#" id="cart-nav">🛒 Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <p class="hero-eyebrow">Professional Grade</p>
+            <h1 class="hero-title">Play Harder.<br><span>Win Bigger.</span></h1>
+            <p class="hero-subtitle">World-class gear built for athletes who refuse to settle. From elite willow to
+                precision leather — every match counts.</p>
+            <a href="#products-section" class="hero-cta">Shop Now</a>
+        </div>
+        <div class="hero-img-wrap">
+            <img src="https://www.sstoncricket.com/wp-content/uploads/2025/07/IMG-20250722-WA0009-1.jpg"
+                alt="SS Ton Premium Cricket Bat" class="hero-product-img">
+        </div>
+    </section>
+
+    <!-- Category Filter Bar -->
+    <div class="filter-bar">
+        <button class="cat-btn" data-cat="all">All Items</button>
+        <button class="cat-btn" data-cat="bat">Bats</button>
+        <button class="cat-btn" data-cat="ball">Balls</button>
+        <button class="cat-btn" data-cat="protection">Protection</button>
+        <button class="cat-btn" data-cat="accessories">Accessories</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="products-section">
+        <h2>Cricket Equipment</h2>
+
+        <div class="products">
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/EM_360_Bold_English_Willow_Cricket_Bat_Size_SH_Front_View.png"
+                        alt="ABD(360°) Cricket Bat" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>ABD(360°) Cricket Bat</h3>
+                    <p>Price: ₹24,999</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/reebok-english-willow-default-title-reebok-blast-pro-english-willow-cricket-bat-size-sh-38761399386292.jpg"
+                        alt="Reebok English Willow" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Reebok English Willow</h3>
+                    <p>Price: ₹18,500</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/sg-english-willow-size-5-sg-slammer-classic-english-willow-cricket-bat-size-38354299060404.jpg"
+                        alt="SG Sierra Plus" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Sierra Plus</h3>
+                    <p>Price: ₹9,999</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="ball">
+                <div class="product-img-container">
+                    <span class="badge badge-limited">Limited</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2023/10/349574141/GR/AB/PJ/2100883/ss-true-test-cricket-ball-1000x1000.jpg"
+                        alt="SS Red Leather" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Red Leather Ball</h3>
+                    <p>Price: ₹850</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://uzisports.com/cdn/shop/products/masuri-Eline-Ti-helmet_300x.jpg" alt="Masuri Helmet"
+                        style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Masuri E-Line Helmet</h3>
+                    <p>Price: ₹15,499</p>
+                </div>
+            </div>
+
+            <!-- More Products... -->
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://www.gray-nicolls.co.uk/cdn/shop/files/CAAA26EnglishWillowBatsLegendGOLDEditionBat_Face.jpg?v=1760956119&width=500"
+                        alt="Gray Nicolls V-Pro" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Gray Nicolls V-Pro</h3>
+                    <p>Price: ₹32,000</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://whacksports.com.au/cdn/shop/files/DSC-Spliit-Special-Edition-English-Willow-Cricket-Bat-2024-1_35dd28cd-c4ce-4b1f-b490-724c42942c27.jpg?v=1727009989"
+                        alt="DSC Be Fearless" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>DSC Be Fearless EW</h3>
+                    <p>Price: ₹14,500</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/SS_Ton_Player_Ed_Batting_Gloves_1_Cricketer_Pro.jpg?v=1744401030"
+                        alt="SS Pro Player Gloves" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Pro Player Gloves</h3>
+                    <p>Price: ₹4,800</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketershop.com/cdn/shop/files/gray-nicolls-titanium-grill-m-gray-nicolls-ultimate-pro-360-titanium-cricket-helmet-37990854656180.jpg?v=1745775256&width=1080"
+                        alt="GN Ultimate Pro Gloves" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Gray Nicolls Ultimate Pro</h3>
+                    <p>Price: ₹6,500</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="ball">
+                <div class="product-img-container">
+                    <span class="badge badge-limited">Limited</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/kookaburra-white-cricket-ball-adult-kookaburra-turf-white-official-odi-and-t20-cricket-ball-37411931619508.jpg?v=1745772520&width=1080"
+                        alt="Kookaburra Turf White Leather Cricket Ball" style="cursor:pointer;"
+                        class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Kookaburra Turf White Ball</h3>
+                    <p>Price: ₹15,000</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/Roboarm-black.jpg?v=1696974716"
+                        alt="Robo Arm" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Robo Arm</h3>
+                    <p>Price: ₹1499</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/CoverpointTrunksMens_Cricketerpro.jpg?v=1696808919"
+                        alt="Grey Nicolls Supporter" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Grey Nicolls Cricket Trunk</h3>
+                    <p>Price: ₹799</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/1_ac7c6be2-350d-4920-8563-c7a2073ebf23.jpg?v=1696974978"
+                        alt="SG Steadler 5.0 Cricket Shoes" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Steadler 5.0 Cricket Shoes</h3>
+                    <p>Price: ₹1,400</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/sg-batting-pads-junior-sg-rp-ecolite-cricket-batting-leg-guard-size-39055109882036.jpg?v=1745776104&width=1080"
+                        alt="SG Ecolite Batting Leg Guards" style="cursor:pointer;" class="quick-view-trigger"
+                        loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Ecolite Batting Pads</h3>
+                    <p>Price: ₹2,200</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/gray-nicolls-titanium-grill-m-gray-nicolls-ultimate-pro-360-titanium-cricket-helmet-38289690329268.webp?v=1745775259&width=1080"
+                        alt="Gray Nicolls Ultimate Pro 360 Helmet" style="cursor:pointer;" class="quick-view-trigger"
+                        loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Gray Nicolls Ultimate Pro 360 Helmet</h3>
+                    <p>Price: ₹12,000</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://www.sstoncricket.com/wp-content/uploads/2025/01/falcon-6000.jpg" alt="SS Sun Glass"
+                        alt="SS Sun Glass" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Sun Glass</h3>
+                    <p>Price: ₹2,199</p>
+                </div>
+            </div>
+
+            <!-- Restored Missing Products -->
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRdgMXyTX1DpA6DlXI2f0qlEtoTJM1DfQfXLOdkpPfn8YG5aAIl1kATy7qM8zjMi5GNX4FhwVrVIGdecsfzuxxfqx-W0DA6_WU2R9Zyv9pMI7U3g5Xx7AfvOA"
+                        alt="Kookaburra Ghost Bat" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Kookaburra Ghost Limited</h3>
+                    <p>Price: ₹28,500</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/NIVI_Spring_Stumps_2_Cricketer_Pro_medium.webp?v=1770493278"
+                        alt="Stumps" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Cricket Stumps</h3>
+                    <p>Price: ₹1,249</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-limited">Limited</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://scssports.in/cdn/shop/files/1_ee211b00-c7b6-463f-a815-511d15407faa.png?v=1738058892&width=980"
+                        alt="SG Sunny Tonny Classic" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Sunny Tonny Classic</h3>
+                    <p>Price: ₹15,500</p>
+                </div>
+            </div>
+
+             <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketershop.com/cdn/shop/files/shrey-training-s-shrey-intense-compression-cricket-long-sleeve-colour-navy-blue-38319779971252.webp?v=1745773347&width=540"
+                        alt="Shrey Compression" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Shrey Intense Compression Sleeve</h3>
+                    <p>Price: ₹1,299</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="Ball">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/Ball-HANGING-BALL-e1644627551624.jpg?v=1696975498"
+                        alt="SS Hanging Ball" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3></h3>
+                    <p>Price: ₹899</p>
+                </div>
+            </div>
+
+            
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://imgs.search.brave.com/hbFScLde27sGZzImq7w9lFpVupw88Vx3UrH06HkNJ7Q/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcmlj/a2V0ZXJzaG9wLmNv/bS9jZG4vc2hvcC9m/aWxlcy9iYXMtdmFt/cGlyZS1iYXR0aW5n/LWdsb3Zlcy1yaWdo/dC1oYW5kZWQtYmFz/LXZhbXBpcmUtcGxh/eWVyLWVkaXRpb24t/Y3JpY2tldC1iYXR0/aW5nLWdsb3Zlcy1t/ZW5zLXNpemUtcmln/aHQtYW5kLWxlZnQt/aGFuZGVkLTM4MTE5/NDc5MDgzMTg4Lndl/YnA_dj0xNzQ1Nzcy/NDMzJndpZHRoPTEw/MDA"
+                        alt="Bass Gloves" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Bass Gloves</h3>
+                    <p>Price: ₹3,499</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://imgs.search.brave.com/gMEGs5NKwCVRMklR0Iv4oEZdcHCzMCzXqCLqPW9TZDA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcmlj/a2V0em9uZXVzYS5j/b20vY2RuL3Nob3Av/ZmlsZXMvRzFfMmYw/NDBiNDgtYzI2ZS00/N2ZkLWE5MGMtMDI0/Njg0ZDYzYzQ0XzM4/MHg0MjBfY3JvcF9j/ZW50ZXIuanBnP3Y9/MTY5ODM3NzMzNA"
+                        alt="Puma Rubber Shoes" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Puma Rubber Shoes</h3>
+                    <p>Price: ₹6,299</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/SSDragonBattingGloves2CricketerPro_1880x.webp?v=1766842404"
+                        alt="" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Dragon Gloves</h3>
+                    <p>Price: ₹2,149</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketershop.com/cdn/shop/files/Nike_Domain_3_Low_Spikes_Cricket_Shoes_Composite_View.webp?v=1771497992&width=1080"
+                        alt="Nike Domain Spike Shoes" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Nike Domain Spike Shoes</h3>
+                    <p>Price: ₹13,799</p>
+                </div>
+            </div>
+            
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketerpro.com/cdn/shop/files/DSCEconomyCricketKit1CricketerPro.jpg?v=1743709266"
+                        alt="DSC Beginner Kit" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>DSC Beginner Kit</h3>
+                    <p>Price: ₹7,999</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketershop.com/cdn/shop/files/GM_Band_Matrix_Cricket_Bat_Handle_Grip_Single_Front_View.jpg?v=1765179150&width=1080"
+                        alt="Khelo Ji Official Grip" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Khelo Ji Official Grip</h3>
+                    <p>Price: ₹199</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSlKXaE6DZv5cdWi4IguVHIyBW_QS_cacGZOk_Xfz-A9GrHnSnZwZeyX22nZpHWN6ClsoeC8Gr8psp-x6q7I6rFMoeF8fgy7qo_f1ZqNgkF0USu5qMkqY-qLA"
+                        alt="MRF Grand Edition" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>MRF Grand Edition</h3>
+                    <p>Price: ₹42,000</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://ik.imagekit.io/vyka3olhl/uk/product-3/navy-blue/SHREY_MASTER_CLASS_AIR_2.0_TITANIUM__H011_NAVY_4_HD_6udJFBW6-Z.webp"
+                        alt="Shrey Masterclass Air" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Shrey Masterclass Air</h3>
+                    <p>Price: ₹9,800</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="bat">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://www.vks.com/images/product/full/kookaburra-kahuna-pro-cricket-bat-40753-1.jpg"
+                        alt="Kookaburra Kahuna" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Kookaburra Kahuna Pro</h3>
+                    <p>Price: ₹21,000</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="ball">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cdn.shopify.com/s/files/1/0827/6249/8336/files/1_fa9da12e-a4da-443b-9de1-686ff569629b.png?v=1720246548"
+                        alt="SG Test White Ball" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Test White Ball </h3>
+                    <p>Price: ₹4,500</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://cricketershop.com/cdn/shop/files/kookaburra-batting-pads-for-right-handed-batsman-adult-kookaburra-kahuna-600-cricket-batting-leg-guard-pads-37989254430900.jpg?v=1745772954&width=1080"
+                        alt="Kookaburra Batting Pad" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>Kookaburra Batting Pad</h3>
+                    <p>Price: ₹3,799</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <span class="badge badge-limited">Limited</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://www.pentathlon.in/wp-content/uploads/2021/07/gutsy_ton-1_2.jpg"
+                        alt="SS Gutsy Kit Bag" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Gutsy Pro Kit Bag</h3>
+                    <p>Price: ₹7,500</p>
+                </div>
+            </div>
+
+                  <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                <img src="https://cricketershop.com/cdn/shop/files/moonwalkr-thigh-guards-right-hand-batsman-xs-moonwalkr-2-0-cricket-batting-combo-thigh-guard-pad-navy-blue-38290342215860.webp?v=1745773223&width=1800"
+                    alt="MoonWalker Thigh Guard" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                <form action="/add-to-cart" method="post">
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+            </div>
+                <div class="product-info">
+                    <h3>MoonWalker Thigh Guard</h3>
+                    <p>Price: ₹4,449</p>
+                </div>
+            </div> 
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://whacksports.com.au/cdn/shop/products/SS-Bat-Cover-Flap-Type-Blue-2024-2_1200x1200.jpg"
+                        alt="SS Bat Cover" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Bat Cover Full PVC</h3>
+                    <p>Price: ₹800</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketshop.co.za/wp-content/uploads/2019/05/SS-CHEVRON-GRIP_SKU-100443.jpg"
+                        alt="SS Bat Grip" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Bat Grip Multi-Color</h3>
+                    <p>Price: ₹250</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="accessories">
+                <div class="product-img-container">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://www.sstoncricket.com/wp-content/uploads/2023/04/IMG-20250919-WA0002.jpg"
+                        alt="SS Bat Oil" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SS Bat Oil</h3>
+                    <p>Price: ₹350</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/sg-thigh-guards-adult-sg-test-cricket-batting-thigh-guard-pad-38199021600948_1800x1800.webp"
+                        alt="SG Test Thigh Pad" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Test Thigh Pad</h3>
+                    <p>Price: ₹1,800</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="protection">
+                <div class="product-img-container">
+                    <span class="badge badge-bestseller">Best Seller</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://images.weserv.nl/?url=https://cricketershop.com/cdn/shop/files/sg-elbow-guards-mens-sg-test-cricket-batting-elbow-guard-size-39052541034676_1800x1800.png"
+                        alt="SG Test Arm Guard" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Test Arm Guard</h3>
+                    <p>Price: ₹950</p>
+                </div>
+            </div>
+
+            <div class="product" data-category="ball">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                <img src="https://imgs.search.brave.com/1pg8NwLnpf-jilza3MDbsvns-7Q3LWE5inZ-iAbSBVU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjcv/MjQzLzUwMy9zbWFs/bC9hLW1hbGUtaGFu/ZC1ob2xkaW5nLWEt/cmVkLXRlc3QtbWF0/Y2gtbGVhdGhlci1z/dGl0Y2gtY3JpY2tl/dC1iYWxsLWNsb3Nl/dXAtcGljdHVyZS13/aGl0ZS1iYWNrZ3Jv/dW5kLXBob3RvLmpw/Zw"
+                    alt="KheCricket Ball" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                <form action="/add-to-cart" method="post">
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+            </div>
+                <div class="product-info">
+                    <h3>Khelo Ji Cricket Ball</h3>
+                    <p>Price: ₹950</p>
+                </div>
+            </div>    
+
+            <div class="product" data-category="ball">
+                <div class="product-img-container">
+                    <button class="wishlist-btn" title="Add to Wishlist">♡</button>
+                    <img src="https://m.media-amazon.com/images/I/31L0DdF4oLL._SY300_SX300_QL70_FMwebp_.jpg"
+                        alt="SG Club Leather Ball" style="cursor:pointer;" class="quick-view-trigger" loading="lazy">
+                    <form action="/add-to-cart" method="post">
+                        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="product-info">
+                    <h3>SG Club Leather Ball</h3>
+                    <p>Price: ₹700</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Khelo Ji</h3>
+                <p>Khelo Ji is your ultimate destination for premium, professional-grade cricket gear. Born out of a
+                    deep passion for the sport, we outfit athletes with the best bats, balls, protection, and
+                    accessories to elevate their game to the absolute highest level.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><strong>📍 Address:</strong> Hinjawadi, Pune, MH 411057</li>
+                    <li><strong>📞 Phone:</strong> +91 99999 00000</li>
+                    <li><strong>✉️ Email:</strong> support@kheloji.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Khelo Ji. Engineered for excellence.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Bag</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div id="cart-items-container">
+                <p style="text-align:center; color:#777;">Your cart is empty.</p>
+            </div>
+            <div class="cart-total-wrap">
+                <h3 style="margin:0;">Total: <span id="modal-total-price">₹0</span></h3>
+                <button id="checkout-btn" disabled>Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shipping & Payment</h2>
+                <button id="close-checkout-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="checkout-form">
+                <input type="text" id="cust-name" placeholder="Full Name" required>
+                <textarea id="cust-address" placeholder="Complete Shipping Address" required></textarea>
+                <button type="submit"
+                    style="width:100%; height: 50px; background: var(--red); color: white; border: none; font-weight: 700;">Pay
+                    ₹<span id="checkout-total">0</span> Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-quickview-btn" class="close-btn">&times;</button>
+            <div class="qv-image-side">
+                <img id="qv-img" src="" alt="Product Image">
+            </div>
+            <div class="qv-info-side">
+                <h2 id="qv-title">Product Name</h2>
+                <h3 id="qv-price" class="qv-price">₹0</h3>
+                <p id="qv-desc" class="qv-desc">Premium quality gear for serious players. Built to last.</p>
+                <button id="qv-add-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toast">Item added to bag!</div>
+
+    <!-- Scripts -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>

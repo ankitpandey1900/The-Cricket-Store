@@ -1,0 +1,122 @@
+/* Header / Nav */
+.header {
+    background: var(--black);
+    color: var(--white);
+    padding: 0 48px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-container h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.logo {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.nav a:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.1);
+}
+
+#cart-nav {
+    background: var(--red) !important;
+    color: var(--white) !important;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 8px 14px !important;
+    letter-spacing: 0.5px;
+}
+#cart-nav:hover {
+    background: #c20008 !important;
+}
+
+/* Footer */
+footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 48px 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-section p, .footer-section ul {
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+}
