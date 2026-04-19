@@ -14,3 +14,12 @@ export function showToast(msg) {
         toast.classList.remove('visible');
     }, 3000);
 }
+
+/**
+ * formatPrice - Formats number to Indian Rupee currency string
+ * @param {number} price 
+ * @returns {string}
+ */
+export function formatPrice(price) {
+    return '₹' + Number(price).toLocaleString('en-IN');
+}

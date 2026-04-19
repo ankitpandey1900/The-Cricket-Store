@@ -44,6 +44,12 @@ button:disabled {
     background: #f9f9f9;
 }
 
+.cat-btn.active {
+    background: #111;
+    color: white;
+    border-color: #111;
+}
+
 /* Qty Buttons */
 .qty-plus, .qty-minus {
     text-transform: none;

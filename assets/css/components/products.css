@@ -136,20 +136,60 @@ h2::after {
     flex-direction: column;
 }
 
-.product h3 {
-    font-size: 15px;
+.product-info h3 {
+    margin: 5px 0 8px;
+    font-size: 16px;
+    color: #fff;
     font-weight: 700;
-    letter-spacing: 0.2px;
-    color: var(--black);
-    margin-bottom: 4px;
-    text-transform: none;
+    line-height: 1.3;
 }
 
-.product p {
-    font-size: 15px;
+.p-brand {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.p-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.p-current-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.p-old-price {
+    font-size: 13px;
+    color: #888;
+    text-decoration: line-through;
     font-weight: 500;
+}
+
+.p-rating {
+    color: #ff9d00;
+    font-size: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.p-rating span {
     color: #666;
-    margin: 0;
+    font-size: 11px;
+}
+
+.badge-sale {
+    background: #25D366 !important; /* Green for sale/whatsapp feel */
+    color: #000 !important;
+    font-weight: 900 !important;
 }
 
 /* Add to Cart Button Overlay */
@@ -183,3 +223,20 @@ h2::after {
 .add-to-cart-btn:hover {
     background: var(--red);
 }
+
+.product.out-of-stock {
+    opacity: 0.65;
+    cursor: default;
+}
+
+.product.out-of-stock .product-img-container img {
+    filter: grayscale(0.8);
+}
+
+.product.out-of-stock .add-to-cart-btn {
+    background: #666;
+    cursor: not-allowed;
+    opacity: 1;
+    transform: translateY(0);
+}
+

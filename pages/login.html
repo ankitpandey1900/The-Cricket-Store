@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Khelo Ji Cricket Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e5000a;
+      --red-dark: #b5000a;
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1c1c28;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f5;
+      --muted: #888;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Background Animation */
+    .bg-blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(229,0,10,0.12) 0%, rgba(229,0,10,0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      filter: blur(60px);
+    }
+    .blob-1 { top: -10%; right: -10%; }
+    .blob-2 { bottom: -10%; left: -10%; }
+
+    .auth-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    .auth-header { text-align: center; margin-bottom: 32px; }
+    .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .logo span { color: var(--red); }
+    .subtitle { color: var(--muted); font-size: 0.95rem; }
+
+    .tabs { display: flex; gap: 8px; background: var(--surface2); padding: 5px; border-radius: 12px; margin-bottom: 32px; }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+      color: var(--muted);
+    }
+    .tab.active { background: var(--surface); color: var(--text); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(229,0,10,0.1); }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      margin-top: 8px;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* Role Selector */
+    .role-selector { display: flex; gap: 12px; margin-bottom: 24px; }
+    .role-option {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-option i { display: block; font-size: 1.5rem; margin-bottom: 4px; }
+    .role-option span { font-size: 14px; font-weight: 600; }
+    .role-option.selected { border-color: var(--red); background: rgba(229,0,10,0.08); color: var(--red); }
+
+    .auth-form { display: none; }
+    .auth-form.active { display: block; animation: fadeIn 0.4s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .error-msg { background: rgba(229,0,10,0.15); color: #ff4d4d; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; margin-bottom: 20px; display: none; }
+    .error-msg.show { display: block; }
+
+    /* Demo Access Pills */
+    .demo-pills { margin-top: 32px; text-align: center; border-top: 1px solid var(--border); padding-top: 24px;}
+    .demo-title { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .pill-group { display: flex; justify-content: center; gap: 10px; }
+    .pill {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #aaa;
+    }
+    .pill:hover { border-color: var(--red); color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
+  <div class="auth-card">
+    <div class="auth-header" onclick="location.href='../index.html'" style="cursor:pointer;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s" 
+           alt="Logo" style="height:60px; border-radius:12px; margin-bottom:12px;">
+      <div class="logo">Khelo <span>Ji</span></div>
+      <div class="subtitle">Premium Cricket Equipment</div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" id="login-tab" onclick="switchTab('login')">Login</div>
+      <div class="tab" id="register-tab" onclick="switchTab('register')">Register</div>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" class="auth-form active">
+      <div id="login-error" class="error-msg"></div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="login-email" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="btn-primary" onclick="handleLogin()">Sign In →</button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" class="auth-form">
+      <div id="register-error" class="error-msg"></div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="reg-name" placeholder="Sachin OG">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="reg-email" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Min. 6 characters">
+      </div>
+      <label>I am a...</label>
+      <div class="role-selector">
+        <div class="role-option selected" id="role-buyer" onclick="selectRole('buyer')">
+          <span>Buyer</span>
+        </div>
+        <div class="role-option" id="role-seller" onclick="selectRole('seller')">
+          <span>Seller</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="handleRegister()">Create Account →</button>
+    </div>
+
+    <div class="demo-pills">
+      <div class="demo-title">Presentation Demo Access</div>
+      <div class="pill-group">
+        <div class="pill" onclick="fillDemo('buyer@kheloji.com', 'buyer123')">Demo Buyer</div>
+        <div class="pill" onclick="fillDemo('seller@kheloji.com', 'seller123')">Demo Seller</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/core/db.js"></script>
+  <script src="../assets/js/pages/auth.js"></script>
+</body>
+</html>

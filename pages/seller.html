@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Dashboard | Khelo Ji</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e5000a;
+      --red-dark: #b5000a;
+      --green: #00c853;
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1c1c28;
+      --surface3: #22222f;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f5;
+      --muted: #888;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* TOP NAV */
+    .dash-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { font-size: 1.3rem; font-weight: 900; }
+    .logo span { color: var(--red); }
+    .seller-badge {
+      background: rgba(229,0,10,0.15);
+      border: 1px solid rgba(229,0,10,0.3);
+      color: var(--red);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .seller-name { font-size: 14px; color: var(--muted); }
+    .btn-link { background: none; border: 1px solid var(--border); color: var(--muted); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.2s; }
+    .btn-link:hover { border-color: var(--red); color: var(--red); }
+
+    /* LAYOUT */
+    .dash-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 65px);
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+    }
+    .sidebar-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px; padding: 0 8px; }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 4px;
+      transition: all 0.2s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar-item:hover { background: var(--surface2); color: var(--text); }
+    .sidebar-item.active { background: rgba(229,0,10,0.12); color: var(--red); }
+    .sidebar-item .icon { font-size: 16px; }
+
+    .main-content { padding: 32px; overflow-y: auto; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: rgba(229,0,10,0.3); }
+    .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .stat-value { font-size: 2rem; font-weight: 800; }
+    .stat-value.red { color: var(--red); }
+    .stat-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* PANELS */
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .panel-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 24px; }
+    .panel-title span { color: var(--red); }
+
+    /* ADD PRODUCT FORM */
+    .product-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 0; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--red); }
+    textarea { resize: vertical; min-height: 80px; }
+    select option { background: var(--surface2); }
+
+    .form-actions { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+    .btn-primary { background: var(--red); color: white; border: none; padding: 12px 28px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .btn-secondary { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); padding: 12px 24px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--border); color: var(--text); }
+
+    /* PRODUCTS TABLE */
+    .products-table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .table-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .table-toolbar h3 { font-size: 15px; font-weight: 700; }
+    .search-inline { padding: 8px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; width: 200px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 12px 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; background: rgba(255,255,255,0.02); }
+    td { padding: 14px 20px; font-size: 14px; border-top: 1px solid var(--border); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .product-img-thumb { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; background: var(--surface2); }
+    .product-name-cell { font-weight: 600; }
+    .product-cat { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: rgba(255,255,255,0.06); color: var(--muted); }
+    .badge-chip { padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+    .badge-bestseller { background: rgba(255,193,7,0.2); color: #ffc107; }
+    .badge-new { background: rgba(33,150,243,0.2); color: #2196f3; }
+    .badge-limited { background: rgba(229,0,10,0.2); color: var(--red); }
+
+    .action-btns { display: flex; gap: 8px; }
+    .btn-edit { background: rgba(33,150,243,0.15); color: #2196f3; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .btn-edit:hover { background: rgba(33,150,243,0.3); }
+    .btn-del { background: rgba(229,0,10,0.15); color: var(--red); border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .btn-del:hover { background: rgba(229,0,10,0.3); }
+    .toggle-active { width: 36px; height: 20px; border-radius: 10px; border: none; cursor: pointer; position: relative; transition: background 0.2s; }
+    .toggle-active.on { background: var(--green); }
+    .toggle-active.off { background: var(--muted); }
+
+    /* ORDERS TABLE */
+    .orders-table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .order-status-select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; cursor: pointer; }
+
+    /* EDIT MODAL */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.open { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      width: 90%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .modal-header h3 { font-size: 1.1rem; font-weight: 800; }
+    .close-modal { background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer; }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--surface);
+      border: 1px solid var(--green);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .empty-row td { text-align: center; color: var(--muted); padding: 40px; }
+  </style>
+</head>
+<body>
+
+  <nav class="dash-nav">
+    <div style="display:flex;align-items:center;gap:12px; cursor:pointer;" onclick="location.href='../index.html'">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s" 
+           alt="Logo" style="height:32px; border-radius:6px;">
+      <span class="logo">Khelo <span style="color:var(--red);">Ji</span></span>
+      <span class="seller-badge">Seller</span>
+    </div>
+    <div class="nav-right">
+      <span class="seller-name" id="seller-name-display"></span>
+      <a href="../index.html" class="btn-link">🏪 View Store</a>
+      <button class="btn-link" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- LAYOUT -->
+  <div class="dash-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Menu</div>
+      <button class="sidebar-item active" id="tab-overview" onclick="showPanel('overview')"><span class="icon">📊</span> Overview</button>
+      <button class="sidebar-item" id="tab-add" onclick="showPanel('add')"><span class="icon">➕</span> Add Product</button>
+      <button class="sidebar-item" id="tab-products" onclick="showPanel('products')"><span class="icon">📦</span> My Products</button>
+      <button class="sidebar-item" id="tab-orders" onclick="showPanel('orders')"><span class="icon">🧾</span> Incoming Orders</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- OVERVIEW -->
+      <div class="panel active" id="panel-overview">
+        <div class="panel-title">Dashboard <span>Overview</span></div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-value red" id="stat-revenue">₹0</div>
+            <div class="stat-sub">from all paid orders</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-value" id="stat-orders">0</div>
+            <div class="stat-sub">orders received</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active Listings</div>
+            <div class="stat-value" id="stat-listings">0</div>
+            <div class="stat-sub">products live in store</div>
+          </div>
+        </div>
+
+        <div class="products-table-wrap">
+          <div class="table-toolbar">
+            <h3>Recent Orders</h3>
+          </div>
+          <table>
+            <thead><tr><th>Order ID</th><th>Buyer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="recent-orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ADD PRODUCT -->
+      <div class="panel" id="panel-add">
+        <div class="panel-title">Add <span>New Product</span></div>
+        <div class="product-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="add-name">Product Name *</label>
+              <input type="text" id="add-name" placeholder="e.g. ABD(360°) Cricket Bat">
+            </div>
+            <div class="form-group">
+              <label for="add-brand">Brand</label>
+              <input type="text" id="add-brand" placeholder="e.g. SG, MRF, Reebok">
+            </div>
+            <div class="form-group">
+              <label for="add-price">Listing Price (₹) *</label>
+              <input type="number" id="add-price" placeholder="24999">
+            </div>
+            <div class="form-group">
+              <label for="add-original-price">Original Price (₹) — for sale label</label>
+              <input type="number" id="add-original-price" placeholder="29999">
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="add-category">
+                <option value="">Select category</option>
+                <option value="bat">Bat</option>
+                <option value="ball">Ball</option>
+                <option value="protection">Protection</option>
+                <option value="accessories">Accessories</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Stock Quantity *</label>
+              <input type="number" id="add-stock" placeholder="e.g. 10" min="0">
+            </div>
+            <div class="form-group">
+              <label>Badge (optional)</label>
+              <select id="add-badge">
+                <option value="">None</option>
+                <option value="bestseller">Best Seller</option>
+                <option value="new">New</option>
+                <option value="limited">Limited</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Image URL *</label>
+              <input type="url" id="add-image" placeholder="https://...">
+            </div>
+            <div class="form-group full">
+              <label>Description</label>
+              <textarea id="add-desc" placeholder="Describe your product..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn-secondary" onclick="clearAddForm()">Clear</button>
+              <button class="btn-primary" onclick="handleAddProduct()">➕ List Product</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY PRODUCTS -->
+      <div class="panel" id="panel-products">
+        <div class="panel-title">My <span>Products</span></div>
+        <div class="products-table-wrap">
+          <div class="table-toolbar">
+            <h3 id="products-count">— products</h3>
+            <input class="search-inline" type="text" placeholder="🔍 Search..." oninput="filterProductsTable(this.value)">
+          </div>
+          <table>
+            <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Badge</th><th>Active</th><th>Actions</th></tr></thead>
+            <tbody id="products-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INCOMING ORDERS -->
+      <div class="panel" id="panel-orders">
+        <div class="panel-title">Incoming <span>Orders</span></div>
+        <div class="orders-table-wrap">
+          <table>
+            <thead><tr><th>Order ID</th><th>Buyer</th><th>Product</th><th>Qty</th><th>Revenue</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- EDIT PRODUCT MODAL -->
+  <div class="modal-bg" id="edit-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Edit Product</h3>
+        <button class="close-modal" onclick="closeEditModal()">×</button>
+      </div>
+      <input type="hidden" id="edit-id">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="edit-name">
+        </div>
+        <div class="form-group">
+          <label>Brand</label>
+          <input type="text" id="edit-brand">
+        </div>
+        <div class="form-group">
+          <label>Listing Price (₹)</label>
+          <input type="number" id="edit-price">
+        </div>
+        <div class="form-group">
+          <label>Original Price (₹)</label>
+          <input type="number" id="edit-original-price">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="edit-category">
+            <option value="bat">Bat</option>
+            <option value="ball">Ball</option>
+            <option value="protection">Protection</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Stock</label>
+          <input type="number" id="edit-stock">
+        </div>
+        <div class="form-group">
+          <label>Badge</label>
+          <select id="edit-badge">
+            <option value="">None</option>
+            <option value="bestseller">Best Seller</option>
+            <option value="new">New</option>
+            <option value="limited">Limited</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="url" id="edit-image">
+        </div>
+        <div class="form-group full">
+          <label>Description</label>
+          <textarea id="edit-desc"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+          <button class="btn-primary" onclick="handleEditSave()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../assets/js/core/db.js"></script>
+  <script src="../assets/js/pages/seller.js"></script>
+</body>
+</html>

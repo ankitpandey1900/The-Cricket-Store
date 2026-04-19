@@ -1,11 +1,17 @@
 /**
- * Cart Module
- * Handles all state and UI updates for the shopping cart.
+ * handles all state and UI updates for the shopping cart.
  */
+import { formatPrice } from '../core/utils.js';
 
 // Initial State (Internal to module)
 let cart = JSON.parse(localStorage.getItem('my_cricket_cart')) || [];
 cart.forEach(item => { if (!item.quantity) item.quantity = 1; });
+
+export function clearCart() {
+    cart = [];
+    localStorage.removeItem('my_cricket_cart');
+    updateCartUI();
+}
 
 export function getCart() {
     return cart;
@@ -77,26 +83,21 @@ export function updateCartUI() {
         
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item-row'; 
-        itemDiv.style.display = 'flex';
-        itemDiv.style.justifyContent = 'space-between';
-        itemDiv.style.alignItems = 'center';
-        itemDiv.style.marginBottom = '15px';
-        itemDiv.style.paddingBottom = '15px';
-        itemDiv.style.borderBottom = '1px solid #eee';
+        // Styles moved to modals.css
 
         itemDiv.innerHTML = `
-            <div style="text-align:left; flex:2;">
-                <div style="font-weight:bold; font-size:15px; color:#111; margin-bottom:5px;">${item.name}</div>
-                <div style="color:#e5000a; font-size:14px; font-weight:bold;">₹${item.price.toLocaleString('en-IN')} × ${item.quantity} = ₹${itemTotal.toLocaleString('en-IN')}</div>
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">${formatPrice(item.price)} × ${item.quantity} = ${formatPrice(itemTotal)}</div>
             </div>
             
-            <div style="flex:1; display:flex; justify-content:center; align-items:center; gap:10px;">
+            <div class="cart-item-qty-ctrl">
                 <button class="qty-minus" data-index="${index}">−</button>
-                <span style="font-weight:800; font-size:16px; color:#111; min-width:20px; text-align:center;">${item.quantity}</span>
+                <span class="qty-value">${item.quantity}</span>
                 <button class="qty-plus" data-index="${index}">+</button>
             </div>
 
-            <div style="flex:1; text-align:right;">
+            <div class="cart-item-remove-wrap">
                 <button class="remove-item" data-index="${index}">Remove</button>
             </div>
         `;
