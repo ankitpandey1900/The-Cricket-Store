@@ -2,6 +2,7 @@
 ### Modern UI Design for Sports & Cricket Equipment
 ## 🌐 Live URL: [kheloji.netlify.app](https://kheloji.netlify.app/)
 
+### The Project is only made with intention to submit the assignment of college so full dabake use of antigravity 
 A fully functional, professional e-commerce platform designed for high-end cricket equipment. Built specifically for collegiate presentations, it features a comprehensive buyer and seller experience with zero backend configuration required.
 
 ---
