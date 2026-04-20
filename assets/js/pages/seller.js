@@ -3,8 +3,8 @@
  * Khelo Ji Store
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.KheloJiDB.init();
+document.addEventListener('DOMContentLoaded', async () => {
+    await window.KheloJiDB.init();
 
     // Elements
     const sellerPanelOverview = document.getElementById('panel-overview');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auth guard
     const seller = window.KheloJiDB.users.current();
     if (!seller || seller.role !== 'seller') {
-        window.location.href = 'login.html'; // In same folder now
+        window.location.href = 'login.html';
         return;
     }
 
@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.logout = () => {
         window.KheloJiDB.users.logout();
-        window.location.href = 'login.html'; // In same folder now
+        window.location.href = 'login.html';
     };
 
     // ─── PANEL NAVIGATION ───
-    window.showPanel = (id) => {
+    window.showPanel = async (id) => {
         [sellerPanelOverview, sellerPanelAdd, sellerPanelProducts, sellerPanelOrders].forEach(p => p && p.classList.remove('active'));
         [sellerTabOverview, sellerTabAdd, sellerTabProducts, sellerTabOrders].forEach(t => t && t.classList.remove('active'));
         
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activePanel) activePanel.classList.add('active');
         if (activeTab) activeTab.classList.add('active');
 
-        if (id === 'overview') renderOverview();
-        if (id === 'products') renderProductsTable();
-        if (id === 'orders') renderOrdersTable();
+        if (id === 'overview') await renderOverview();
+        if (id === 'products') await renderProductsTable();
+        if (id === 'orders') await renderOrdersTable();
     };
 
     function showToast(msg) {
@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── OVERVIEW ───
-    function renderOverview() {
-        const myProducts = window.KheloJiDB.products.getBySeller(seller.id);
-        const allOrders = window.KheloJiDB.orders.getForSeller(seller.id);
+    async function renderOverview() {
+        const myProducts = await window.KheloJiDB.products.getBySeller(seller.id);
+        const allOrders = await window.KheloJiDB.orders.getForSeller(seller.id);
 
         let revenue = 0;
         allOrders.forEach(o => {
@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── PRODUCTS TABLE ───
-    window.renderProductsTable = (filter = '') => {
-        const allSellerProducts = window.KheloJiDB.products.getBySeller(seller.id);
+    window.renderProductsTable = async (filter = '') => {
+        const allSellerProducts = await window.KheloJiDB.products.getBySeller(seller.id);
         const filtered = allSellerProducts.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()));
         
         const countEl = document.getElementById('products-count');
@@ -138,23 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.filterProductsTable = (val) => window.renderProductsTable(val);
 
-    window.toggleActive = (id) => {
-        const p = window.KheloJiDB.products.getAllRaw().find(p => p.id == id);
+    window.toggleActive = async (id) => {
+        const p = await window.KheloJiDB.products.getById(id);
         if (!p) return;
-        window.KheloJiDB.products.update(id, { active: !p.active });
-        window.renderProductsTable();
+        await window.KheloJiDB.products.update(id, { active: !p.active });
+        await window.renderProductsTable();
         showToast(p.active ? '🔴 Product hidden from store.' : '🟢 Product now live in store!');
     };
 
-    window.deleteProduct = (id) => {
+    window.deleteProduct = async (id) => {
         if (!confirm('Are you sure you want to delete this product?')) return;
-        window.KheloJiDB.products.delete(id);
-        window.renderProductsTable();
+        await window.KheloJiDB.products.delete(id);
+        await window.renderProductsTable();
         showToast('🗑️ Product deleted.');
     };
 
     // ─── ADD PRODUCT ───
-    window.handleAddProduct = () => {
+    window.handleAddProduct = async () => {
         const name = document.getElementById('add-name').value.trim();
         const price = parseInt(document.getElementById('add-price').value);
         const category = document.getElementById('add-category').value;
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        window.KheloJiDB.products.add({ 
+        await window.KheloJiDB.products.add({ 
             sellerId: seller.id, 
             name, 
             brand,
@@ -195,8 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ─── EDIT MODAL ───
-    window.openEditModal = (id) => {
-        const p = window.KheloJiDB.products.getAllRaw().find(p => p.id == id);
+    window.openEditModal = async (id) => {
+        const p = await window.KheloJiDB.products.getById(id);
         if (!p) return;
         document.getElementById('edit-id').value = p.id;
         document.getElementById('edit-name').value = p.name;
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.closeEditModal = () => editModal.classList.remove('open');
 
-    window.handleEditSave = () => {
+    window.handleEditSave = async () => {
         const id = parseInt(document.getElementById('edit-id').value);
         const updates = {
             name: document.getElementById('edit-name').value.trim(),
@@ -226,9 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
             image: document.getElementById('edit-image').value.trim(),
             description: document.getElementById('edit-desc').value.trim(),
         };
-        window.KheloJiDB.products.update(id, updates);
+        await window.KheloJiDB.products.update(id, updates);
         window.closeEditModal();
-        window.renderProductsTable();
+        await window.renderProductsTable();
         showToast('✅ Product updated!');
     };
 
@@ -239,8 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── ORDERS TABLE ───
-    function renderOrdersTable() {
-        const orders = window.KheloJiDB.orders.getForSeller(seller.id).reverse();
+    async function renderOrdersTable() {
+        const orders = (await window.KheloJiDB.orders.getForSeller(seller.id)).reverse();
         const tbody = document.getElementById('orders-tbody');
         if (!tbody) return;
 
@@ -274,11 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.innerHTML = rows.join('');
     }
 
-    window.updateOrderStatus = (orderId, status) => {
-        window.KheloJiDB.orders.updateStatus(orderId, status);
+    window.updateOrderStatus = async (orderId, status) => {
+        await window.KheloJiDB.orders.updateStatus(orderId, status);
         showToast(`📦 Order ${orderId} marked as ${status}`);
     };
 
     // Initial render
-    renderOverview();
+    await renderOverview();
 });

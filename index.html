@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/layout/hero.css">
     <link rel="stylesheet" href="assets/css/components/products.css">
     <link rel="stylesheet" href="assets/css/components/modals.css">
+    <link rel="stylesheet" href="assets/css/components/payment.css">
     <link rel="stylesheet" href="assets/css/components/components.css">
     <link rel="stylesheet" href="assets/css/layout/responsive.css">
     <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCV4y0zd9kh1PSHWPsgwtOAs6jC30cfpf4w&s">
@@ -175,36 +176,70 @@
         </div>
     </div>
 
-    <!-- Mock Payment Modal -->
-    <div id="mock-pay-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content" style="max-width:420px;">
-            <div class="modal-header">
-                <h2 style="display:flex;align-items:center;gap:8px;">🏦 Razorpay <span style="font-size:12px;padding:3px 8px;background:rgba(0,200,83,0.15);color:#00c853;border-radius:20px;font-weight:700;">SECURE</span></h2>
-                <button class="close-btn" onclick="closeMockPay()">&times;</button>
+    <!-- Payment Gateway Modal (Redesigned) -->
+    <div id="mock-pay-modal" class="modal-overlay">
+        <div class="modal-content payment-card">
+            <div class="payment-tabs">
+                <button class="pay-tab active" onclick="switchPayTab('upi')">UPI / Google Pay</button>
+                <button class="pay-tab" onclick="switchPayTab('card')">Card Payment</button>
             </div>
-            <div style="text-align:center;padding:8px 0 16px;">
-                <div style="font-size:13px;color:#888;margin-bottom:4px;">Amount to Pay</div>
-                <div style="font-size:2rem;font-weight:800;color:var(--red);">₹<span id="mock-pay-amount">0</span></div>
-                <div style="font-size:12px;color:#888;margin-top:4px;">Khelo Ji Cricket Store</div>
-            </div>
-            <div style="margin-bottom:14px;">
-                <label style="display:block;font-size:12px;font-weight:700;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Card Number</label>
-                <input type="text" id="mock-card" value="4111 1111 1111 1111" style="width:100%;padding:11px 14px;background:#1c1c28;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:monospace;font-size:15px;" placeholder="4111 1111 1111 1111">
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Expiry</label>
-                    <input type="text" value="12/28" style="width:100%;padding:11px 14px;background:#1c1c28;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:monospace;font-size:15px;">
+
+            <!-- UPI Section -->
+            <div id="pay-section-upi" class="pay-pane active">
+                <div class="qr-container">
+                    <img id="upi-qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=KheloJiStore" alt="Payment QR Code">
+                    <div class="qr-overlay">
+                        <div class="qr-scan-line"></div>
+                    </div>
                 </div>
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#888;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">CVV</label>
-                    <input type="text" value="***" style="width:100%;padding:11px 14px;background:#1c1c28;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:monospace;font-size:15px;" placeholder="•••">
+                <div class="upi-instructions">
+                    <p>Scan the QR code with any UPI app</p>
+                    <div class="upi-apps">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-PNG.png" alt="UPI">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="GPay">
+                    </div>
                 </div>
+                <div class="payment-amount">
+                    <span>Payable Amount:</span>
+                    <strong id="mock-pay-amount">₹0</strong>
+                </div>
+                <button id="mock-pay-btn" onclick="processMockPayment('upi')" class="confirm-btn">
+                    I have paid →
+                </button>
             </div>
-            <button id="mock-pay-btn" onclick="processMockPayment()" style="width:100%;padding:14px;background:var(--red);color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;font-family:Inter,sans-serif;transition:all 0.2s;letter-spacing:0.02em;">
-                Pay Now →
-            </button>
-            <div style="text-align:center;margin-top:12px;font-size:11px;color:#555;">🔒 256-bit SSL Secured · Powered by Razorpay</div>
+
+            <!-- Card Section (Hidden by default) -->
+            <div id="pay-section-card" class="pay-pane">
+                <div class="card-inputs">
+                    <div class="input-group">
+                        <label>Card Number</label>
+                        <input type="text" value="4111 1111 1111 1111" class="mock-input">
+                    </div>
+                    <div class="row">
+                        <div class="input-group">
+                            <label>Expiry</label>
+                            <input type="text" value="12/28" class="mock-input">
+                        </div>
+                        <div class="input-group">
+                            <label>CVV</label>
+                            <input type="password" value="***" class="mock-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-amount">
+                    <span>Payable Amount:</span>
+                    <strong id="mock-pay-amount-card">₹0</strong>
+                </div>
+                <button onclick="processMockPayment('card')" class="confirm-btn">
+                    Confirm Card Payment →
+                </button>
+            </div>
+            
+            <div class="payment-footer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Razorpay_logo.svg" alt="Razorpay">
+                <span>SECURED GATEWAY</span>
+                <button class="cancel-link" onclick="closeMockPay()">Cancel</button>
+            </div>
         </div>
     </div>
 

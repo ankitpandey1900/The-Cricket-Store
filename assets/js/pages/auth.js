@@ -56,18 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handlers
-    window.handleLogin = () => {
+    window.handleLogin = async () => {
         const email = loginEmail.value.trim();
         const password = loginPass.value;
         if (!email || !password) return showError('login-error', 'Please fill all fields.');
         
-        const result = window.KheloJiDB.users.login(email, password);
+        const result = await window.KheloJiDB.users.login(email, password);
         if (result.error) return showError('login-error', result.error);
         
         window.location.href = result.user.role === 'seller' ? 'seller.html' : '../index.html';
     };
 
-    window.handleRegister = () => {
+    window.handleRegister = async () => {
         const name = regName.value.trim();
         const email = regEmail.value.trim();
         const password = regPass.value;
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!name || !email || !password) return showError('register-error', 'Please fill all fields.');
         if (password.length < 6) return showError('register-error', 'Password must be at least 6 characters.');
         
-        const result = window.KheloJiDB.users.register(name, email, password, selectedRole);
+        const result = await window.KheloJiDB.users.register(name, email, password, selectedRole);
         if (result.error) return showError('register-error', result.error);
         
-        // Auto login
-        window.KheloJiDB.users.login(email, password);
+        // Auto login is handled within register in the new API, 
+        // but we'll follow previous pattern of checking role and redirecting.
         window.location.href = selectedRole === 'seller' ? 'seller.html' : '../index.html';
     };
 

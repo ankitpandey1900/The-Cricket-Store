@@ -3,8 +3,9 @@
  * Khelo Ji Store
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.KheloJiDB.init();
+document.addEventListener('DOMContentLoaded', async () => {
+    // ── Init DB ──
+    await window.KheloJiDB.init();
 
     const ordersList = document.getElementById('orders-list');
     const totalSpentEl = document.getElementById('total-spent');
@@ -20,13 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (userNameEl) userNameEl.textContent = user.name;
 
+    // Nav handling
     window.logout = () => {
         window.KheloJiDB.users.logout();
         window.location.href = 'login.html'; // Same folder
     };
 
-    function renderOrders() {
-        const myOrders = window.KheloJiDB.orders.getByBuyer(user.id).reverse();
+    async function renderOrders() {
+        const myOrders = (await window.KheloJiDB.orders.getByBuyer(user.id)).reverse();
         
         if (orderCountEl) orderCountEl.textContent = myOrders.length;
         

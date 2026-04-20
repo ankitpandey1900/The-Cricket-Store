@@ -1,0 +1,7 @@
+node_modules/
+server/db/shop.db
+server/db/shop.db-journal
+.env
+.DS_Store
+dist/
+build/

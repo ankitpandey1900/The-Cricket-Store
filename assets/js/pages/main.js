@@ -8,10 +8,10 @@ import { showToast, formatPrice } from '../core/utils.js';
 import { addToCart, updateCartUI, handleCartActions, getCart, clearCart } from '../components/cart.js';
 import * as ui from '../components/ui.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
     // ── Init DB ──
-    window.KheloJiDB.init();
+    await window.KheloJiDB.init();
 
     // ── Auth-Aware Nav ──
     const user = window.KheloJiDB.users.current();
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load products from DB
-    allProducts = window.KheloJiDB.products.getAll();
+    allProducts = await window.KheloJiDB.products.getAll();
     renderProducts();
 
     // ── Category Filter ──
@@ -249,24 +249,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Close checkout, open mock payment
             ui.toggleModal(checkoutModal, 'none');
-            document.getElementById('mock-pay-amount').textContent = total.toLocaleString('en-IN');
+            
+            // Set amounts in both tabs
+            document.getElementById('mock-pay-amount').textContent = `₹${total.toLocaleString('en-IN')}`;
+            document.getElementById('mock-pay-amount-card').textContent = `₹${total.toLocaleString('en-IN')}`;
+            
+            // Generate dynamic UPI QR (Deep link format)
+            const upiId = 'kheloji@okaxis';
+            const upiName = 'KheloJi%20Store';
+            const qrData = encodeURIComponent(`upi://pay?pa=${upiId}&pn=${upiName}&am=${total}&cu=INR`);
+            document.getElementById('upi-qr-code').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrData}`;
+            
             document.getElementById('mock-pay-modal').style.display = 'flex';
         });
     }
+
+    window.switchPayTab = (tab) => {
+        document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.pay-pane').forEach(p => p.classList.remove('active'));
+        
+        document.querySelector(`.pay-tab[onclick*="${tab}"]`).classList.add('active');
+        document.getElementById(`pay-section-${tab}`).classList.add('active');
+    };
 
     window.closeMockPay = () => {
         document.getElementById('mock-pay-modal').style.display = 'none';
         ui.toggleModal(checkoutModal, 'flex');
     };
 
-    window.processMockPayment = () => {
+    window.processMockPayment = async (method = 'upi') => {
         if (!pendingOrderData) return;
-        const btn = document.getElementById('mock-pay-btn');
-        btn.textContent = '⏳ Processing...';
+        const btn = document.querySelector(method === 'upi' ? '#pay-section-upi .confirm-btn' : '#pay-section-card .confirm-btn');
+        const originalText = btn.textContent;
+        
         btn.disabled = true;
         btn.style.opacity = '0.7';
+        
+        if (method === 'upi') {
+            btn.innerHTML = '<span class="loader"></span> Waiting for confirmation...';
+            // Simulate realistic bank-to-merchant verification steps
+            const steps = ["Securing connection...", "Verifying transaction...", "Confirming with Bank...", "Success!"];
+            for (const step of steps) {
+                btn.innerHTML = `⏳ ${step}`;
+                await new Promise(r => setTimeout(r, 800));
+            }
+        } else {
+            btn.innerHTML = '⏳ Authorizing Card...';
+            await new Promise(r => setTimeout(r, 1800));
+        }
 
-        setTimeout(() => {
+        try {
             document.getElementById('mock-pay-modal').style.display = 'none';
             btn.textContent = 'Pay Now →';
             btn.disabled = false;
@@ -282,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const paymentId = 'pay_' + Math.random().toString(36).substr(2, 14).toUpperCase();
-            const order = window.KheloJiDB.orders.place(
+            const order = await window.KheloJiDB.orders.place(
                 cartUser ? cartUser.id : 'guest',
                 name,
                 orderItems,
@@ -295,8 +327,28 @@ document.addEventListener('DOMContentLoaded', () => {
             clearCart();
             pendingOrderData = null;
             document.getElementById('payment-order-id').textContent = `Order ID: ${order.id}`;
+            
+            // Add WhatsApp Tracking Link
+            const whatsappBtn = document.createElement('button');
+            whatsappBtn.className = 'whatsapp-track-btn';
+            whatsappBtn.innerHTML = '💬 Track on WhatsApp';
+            whatsappBtn.onclick = () => {
+                const text = encodeURIComponent(`Hi Khelo Ji! I just placed an order (ID: ${order.id}). Please share the tracking details. Total: ₹${total}`);
+                window.open(`https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${text}`, '_blank');
+            };
+            
+            const successContainer = document.querySelector('#payment-modal .modal-content div');
+            // Remove any existing whatsapp btn
+            successContainer.querySelector('.whatsapp-track-btn')?.remove();
+            successContainer.insertBefore(whatsappBtn, successContainer.querySelector('button:last-of-type'));
+
             document.getElementById('payment-modal').style.display = 'flex';
-        }, 2200);
+        } catch (err) {
+            alert('Payment failed: ' + err.message);
+            btn.textContent = 'Try Again';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        }
     };
 
     window.closePaymentModal = () => {

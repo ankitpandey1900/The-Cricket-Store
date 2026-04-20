@@ -1,0 +1,239 @@
+/* Payment Gateway Styles */
+.payment-card {
+    max-width: 450px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background: #0d0d14 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.payment-tabs {
+    display: flex;
+    background: #161621;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.pay-tab {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    background: none;
+    color: #888;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.pay-tab.active {
+    color: var(--red);
+    background: rgba(255, 68, 68, 0.05);
+    border-bottom: 2px solid var(--red);
+}
+
+.pay-pane {
+    display: none;
+    padding: 30px 24px;
+}
+
+.pay-pane.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+.qr-container {
+    position: relative;
+    width: 200px;
+    margin: 0 auto 20px;
+    padding: 12px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#upi-qr-code {
+    width: 100%;
+    display: block;
+}
+
+.qr-overlay {
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 2px solid rgba(255, 68, 68, 0.3);
+    pointer-events: none;
+}
+
+.qr-scan-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    box-shadow: 0 0 10px var(--red);
+    animation: scan 2s linear infinite;
+}
+
+.upi-instructions {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.upi-instructions p {
+    font-size: 14px;
+    color: #eee;
+    margin-bottom: 12px;
+}
+
+.upi-apps {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.upi-apps img {
+    height: 25px;
+    opacity: 0.8;
+}
+
+.payment-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #161621;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.payment-amount span {
+    color: #888;
+    font-size: 13px;
+}
+
+.payment-amount strong {
+    font-size: 20px;
+    color: var(--white);
+}
+
+.confirm-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 68, 68, 0.3);
+    transition: all 0.3s;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+}
+
+.payment-footer {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0d0d14;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.payment-footer img {
+    height: 14px;
+}
+
+.payment-footer span {
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 1px;
+}
+
+.cancel-link {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.card-inputs {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.mock-input {
+    width: 100%;
+    padding: 12px;
+    background: #161621;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: white;
+    font-family: monospace;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.whatsapp-track-btn {
+    width: 100%;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.whatsapp-track-btn:hover {
+    background: #128C7E;
+    transform: scale(1.02);
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+    display: block;
+    animation: bounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounce {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
